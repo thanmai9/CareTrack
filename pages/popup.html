@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/stylep.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons/css/all/all.css">
+
+</head>
+<body>
+    <div class="buttons">
+        <button onclick="showToast(successMsg)">Success</button>
+    </div>
+    <div id="toastBox"></div>
+    <script>
+        let toastBox=document.getElementById('toastBox');
+        let successMsg = 'Successfully submitted <i class="fi fi-ss-check-circle"></i> ';
+        function showToast(msg)
+        {
+            let toast=document.createElement('div');
+            toast.classList.add('toast');
+            toast.innerHTML=msg;
+            toastBox.appendChild(toast);
+            setTimeout(()=>{
+                toast.remove();
+            },6000);
+        }
+    </script>
+</body>
+</html>

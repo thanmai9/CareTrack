@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Monitoring System - Patient Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        #chart-container {
+            margin-top: 30px;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Health Monitoring System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-danger text-white" href="index.html"> Back</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Patient Details</h5>
+                        <p id="patient-name">ID: 5</p>
+                        <p id="patient-age">Name: Gayathri</p>
+                        <p id="patient-id">E-mail: gayathrisowmya@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Vital Signs</h5>
+                        <p id="temperature">Temperature: Loading...</p>
+                        <p id="pulse">Pulse: Loading...</p>
+                        <p id="spo2">Random Value: Loading...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Doctor Details</h5>
+                        <p id="doctor-name">Doctor: Dr. Renuka</p>
+                        <p id="doctor-specialty">Years of Experience: 15</p>
+                        <p id="doctor-contact">E-mail: sairenukag@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Sensor Data Graph</h2>
+        <canvas id="myChart" width="200" height="100"></canvas>
+
+        <script>
+            const channelId = '2641649';
+            const apiKey = 'TDGZCVBJTCSFFCCZ'; 
+            const results = 10;
+            fetch(`https://api.thingspeak.com/channels/${channelId}/feeds.json?api_key=${apiKey}&results=${results}`)
+            .then(response => response.json())
+            .then(data => {
+                const feeds = data.feeds;
+                const lastEntry = feeds[feeds.length - 1];
+                document.getElementById('temperature').innerText = `Temperature: ${parseFloat(lastEntry.field1)} °C`;
+                document.getElementById('pulse').innerText = `Pulse: ${parseFloat(lastEntry.field2)} bpm`;
+                document.getElementById('spo2').innerText = `Random Value: ${parseFloat(lastEntry.field3)}`;
+
+                const labels = feeds.map(feed => new Date(feed.created_at).toLocaleTimeString());
+                const field1Values = feeds.map(feed => parseFloat(feed.field1));
+                const field2Values = feeds.map(feed => parseFloat(feed.field2));
+                const field3Values = feeds.map(feed => parseFloat(feed.field3));
+                const ctx = document.getElementById('myChart').getContext('2d');
+                const myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Temperature',
+                                data: field1Values,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderWidth: 2,
+                                fill: true
+                            },
+                            {
+                                label: 'Pulse',
+                                data: field2Values,
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderWidth: 2,
+                                fill: true
+                            },
+                            {
+                                label: 'Random Value',
+                                data: field3Values,
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                borderWidth: 2,
+                                fill: true
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Time'
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Values'
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+        </script>
+    </div>
+    <footer class="bg-light text-dark py-3">
+        <p>&copy; 2024 Health Monitoring System. All rights reserved.</p>
+    </footer>        
+</body>
+</html>

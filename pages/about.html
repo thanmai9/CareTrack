@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Health Monitoring System</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background-color: lightblue;">
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+    </div>
+
+    <header>
+        <div class="navbar">
+            <button id="sidebarToggle">☰</button> <!-- Toggle button for sidebar -->
+            <div class="logo">
+                <a href="#"><h1>CareTrack</h1></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="usr_login.html">Login</a></li>
+                    <li><a href="location.html">Location</a></li>
+                    <li><a href="about.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-container">
+            <div class="about-box">
+                <h2>Our Mission</h2>
+                <p>At CareTrack, our mission is to revolutionize patient care through innovative technology. Our patient monitoring system is designed to provide real-time insights and actionable data, empowering healthcare providers to deliver exceptional care while enhancing patient outcomes.</p>
+            </div>
+            <div class="about-box">
+                <h2>What We Do</h2>
+                <ul>
+                    <li>Monitor Patient Vital Signs</li>
+                    <li>Access Historical Data</li>
+                    <li>Receive Alerts and Notifications</li>
+                    <li>Integrate with Existing Systems</li>
+                </ul>
+            </div>
+            <div class="about-box">
+                <h2>Why Choose Us?</h2>
+                <ul>
+                    <li>Reliability</li>
+                    <li>User-Friendly Interface</li>
+                    <li>Advanced Analytics</li>
+                    <li>Scalability</li>
+                </ul>
+            </div>
+            <div class="about-box">
+                <h2>Our Team</h2>
+                <p>Our team is composed of dedicated professionals with extensive experience in healthcare technology and patient care. We are committed to continually improving our system and staying at the forefront of innovation to better serve the healthcare community.</p>
+            </div>
+            <div class="about-box">
+                <h2>Our Vision</h2>
+                <p>We envision a future where every patient receives personalized, data-driven care, and healthcare providers have the tools they need to make the best possible decisions. By harnessing the power of technology, we aim to enhance patient outcomes and streamline healthcare delivery.</p>
+            </div>
+            <div class="about-box">
+                <h2>Contact Us</h2>
+                <p>We'd love to hear from you! For more information about our patient monitoring system or to schedule a demo, please contact us at:</p>
+                <p>Email: <a href="#">support@gmail.com</a></p>
+                <p>Phone: <a href="#">123-456-7890</a></p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+            
+            const mainContent = document.querySelector('main');
+            if (sidebar.classList.contains('open')) {
+                mainContent.style.marginLeft = '250px';
+            } else {
+                mainContent.style.marginLeft = '0';
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            if (!sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        const sidebar = document.getElementById('sidebar');
+        sidebar.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        sidebarToggle.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    </script>
+    
+</body>
+</html>

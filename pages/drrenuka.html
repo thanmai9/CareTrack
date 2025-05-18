@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Interface - Patient Monitoring System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">CareTrack</div>
+        <ul class="navbar-menu">
+            <li><a href="drrenuka.html">Home <i class="fas fa-home"></i></a></li>
+            <li>
+                <a href="#">Patients <i class="fas fa-hospital-user"></i></a>
+                <ul class="dropdown">
+                    <li><a href="hari.html">Hari vinayak</a></li>
+                    <li><a href="samanvita.html">Samanvita</a></li>
+                    <li><a href="sathvika.html">Sathvika</a></li>
+                    <li><a href="thanmai.html">Thanmai</a></li>
+                    <li><a href="gayathri.html">Gayathri</a></li>
+                    <li><a href="pandu.html">Pandu</a></li>
+                    <li><a href="harshini.html">Harshini</a></li>
+                    <li><a href="suresh.html">Suresh</a></li>
+                </ul>
+            </li>
+            <li><a href="index.html">Logout <i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Welcome, Dr. Renuka!!!</h1>
+        <p>Manage patient appointments, monitor health metrics, and update patient records efficiently.</p>
+        <div class="button-group">
+            <a href="appointments.html">
+                <button class="btn">View Appointments</button>
+            </a>
+        </div>
+        
+        <!-- Doctor Details Section -->
+        <div class="doctor-details">
+            <h2>Doctor Profile</h2>
+            <p><strong>Name:</strong> Dr. Renuka</p>
+            <p><strong>Specialization:</strong> Cardiologist</p>
+            <p><strong>E-mail:</strong> sarirenukag@gmail.com</p>
+            <p><strong>Office Hours:</strong> Mon-Fri, 9 AM - 5 PM</p>
+            <p><strong>Years of Experience:</strong> 15 years</p>
+            <p><strong>Patient Load:</strong> 10/10</p>
+        </div>
+
+
+        <!-- Patient List Section -->
+        <div class="patient-section">
+            <h2>Your Patients</h2>
+            <ul class="patient-list" id="patientList">
+                <li data-patient-number="1">
+                    <div class="patient-header">
+                        <strong>Patient 1:</strong> Hari vinayak
+                        <button class="toggle-details-btn" onclick="toggleDetails(this)">Show Details</button>
+                    </div>
+                    <ul class="patient-details">
+                        <li><strong>Age:</strong> 35</li>
+                        <li><strong>Gender:</strong> Male</li>
+                        <li><strong>E-mail:</strong> yendukuippudu@gmail.com</li>
+                        <li><strong>Medical History:</strong> Hypertension, Diabetes</li>
+                        <li><strong>Current Health Status:</strong> Stable</li>
+                        <li><strong>Recent Visits:</strong> Last visit on 10/10/2024</li>
+                        <li><strong>Health Metrics:</strong> Heart Rate: 80 bpm, BP: 120/80 mmHg</li>
+                        <li><strong>Emergency Contact:</strong>Hari vinayak, +91-9876738278</li>
+                        <li><strong>Notes:</strong> Needs regular monitoring for blood sugar levels.</li>
+                    </ul>
+                </li>
+                <li data-patient-number="2">
+                    <div class="patient-header">
+                        <strong>Patient 2:</strong> Samanvita
+                        <button class="toggle-details-btn" onclick="toggleDetails(this)">Show Details</button>
+                    </div>
+                    <ul class="patient-details" style="display: none;">
+                        <li><strong>Age:</strong> 22</li>
+                        <li><strong>Gender:</strong> Female</li>
+                        <li><strong>E-mail:</strong> samanvitareddy14@gmail.com</li>
+                        <li><strong>Medical History:</strong> Asthma</li>
+                        <li><strong>Current Health Status:</strong> Stable</li>
+                        <li><strong>Recent Visits:</strong> Last visit on 11/10/2024</li>
+                        <li><strong>Health Metrics:</strong> Heart Rate: 75 bpm, BP: 118/75 mmHg</li>
+                        <li><strong>Emergency Contact:</strong> Samanvita, +123-456-7893</li>
+                        <li><strong>Notes:</strong> Prescribed inhaler for daily use.</li>
+                    </ul>
+                </li>
+                <li data-patient-number="3">
+                    <div class="patient-header">
+                        <strong>Patient 3:</strong> Sathvika
+                        <button class="toggle-details-btn" onclick="toggleDetails(this)">Show Details</button>
+                    </div>
+                    <ul class="patient-details" style="display: none;">
+                        <li><strong>Age:</strong> 25</li>
+                        <li><strong>Gender:</strong> Female</li>
+                        <li><strong>E-mail:</strong> sathvika@gmail.com</li>
+                        <li><strong>Medical History:</strong> Arthritis</li>
+                        <li><strong>Current Health Status:</strong> Requires attention</li>
+                        <li><strong>Recent Visits:</strong> Last visit on 09/12/2024</li>
+                        <li><strong>Health Metrics:</strong> Heart Rate: 85 bpm, BP: 135/85 mmHg</li>
+                        <li><strong>Emergency Contact:</strong>Sathvika, +91 837493923</li>
+                        <li><strong>Notes:</strong> Needs medication for joint pain.</li>
+                    </ul>
+                </li>
+                <li data-patient-number="4">
+                    <div class="patient-header">
+                        <strong>Patient 4:</strong> Thanmai
+                        <button class="toggle-details-btn" onclick="toggleDetails(this)">Show Details</button>
+                    </div>
+                    <ul class="patient-details" style="display: none;">
+                        <li><strong>Age:</strong> 23</li>
+                        <li><strong>Gender:</strong> Female</li>
+                        <li><strong>E-mail:</strong> thanmaikrishna9@gmail.com</li>
+                        <li><strong>Medical History:</strong> Fever</li>
+                        <li><strong>Current Health Status:</strong> Stable</li>
+                        <li><strong>Recent Visits:</strong> Last visit on 9/12/2024</li>
+                        <li><strong>Health Metrics:</strong> Heart Rate: 75 bpm, BP: 118/75 mmHg</li>
+                        <li><strong>Emergency Contact:</strong> Thanmai, +91-9847350642</li>
+                        <li><strong>Notes:</strong> Prescribed inhaler for reduction of fever.</li>
+                    </ul>
+                </li>
+                <li data-patient-number="5">
+                    <div class="patient-header">
+                        <strong>Patient 5:</strong> Gayathri
+                        <button class="toggle-details-btn" onclick="toggleDetails(this)">Show Details</button>
+                    </div>
+                    <ul class="patient-details" style="display: none;">
+                        <li><strong>Age:</strong> 55</li>
+                        <li><strong>Gender:</strong> Female</li>
+                        <li><strong>E-mail:</strong> gayathrisowmya@gmail.com</li>
+                        <li><strong>Medical History:</strong> Diabetics</li>
+                        <li><strong>Current Health Status:</strong> Stable</li>
+                        <li><strong>Recent Visits:</strong> Last visit on 1/09/2023</li>
+                        <li><strong>Health Metrics:</strong> Heart Rate: 70 bpm, BP: 118/75 mmHg</li>
+                        <li><strong>Emergency Contact:</strong> Gayathri, +91-9876738345</li>
+                        <li><strong>Notes:</strong> Prescribed inhaler for daily use.</li>
+                    </ul>
+                </li>
+                <li data-patient-number="6">
+                    <div class="patient-header">
+                        <strong>Patient 6:</strong> Pandu
+                        <button class="toggle-details-btn" onclick="toggleDetails(this)">Show Details</button>
+                    </div>
+                    <ul class="patient-details" style="display: none;">
+                        <li><strong>Age:</strong> 27</li>
+                        <li><strong>Gender:</strong> Female</li>
+                        <li><strong>E-mail:</strong> divyaswik@gmail.com</li>
+                        <li><strong>Medical History:</strong> Asthma</li>
+                        <li><strong>Current Health Status:</strong> Stable</li>
+                        <li><strong>Recent Visits:</strong> Last visit on 8/8/2024</li>
+                        <li><strong>Health Metrics:</strong> Heart Rate: 75 bpm, BP: 118/75 mmHg</li>
+                        <li><strong>Emergency Contact:</strong> Pandu, +91-9847350764</li>
+                        <li><strong>Notes:</strong> Prescribed inhaler for daily use.</li>
+                    </ul>
+                </li>
+                <li data-patient-number="7">
+                    <div class="patient-header">
+                        <strong>Patient 7:</strong> Harshini
+                        <button class="toggle-details-btn" onclick="toggleDetails(this)">Show Details</button>
+                    </div>
+                    <ul class="patient-details" style="display: none;">
+                        <li><strong>Age:</strong> 32</li>
+                        <li><strong>Gender:</strong> Female</li>
+                        <li><strong>E-mail:</strong> harishinikoppakulu@gmail.com</li>
+                        <li><strong>Medical History:</strong> Cold</li>
+                        <li><strong>Current Health Status:</strong> Stable</li>
+                        <li><strong>Recent Visits:</strong> Last visit on 11/10/2024</li>
+                        <li><strong>Health Metrics:</strong> Heart Rate: 75 bpm, BP: 118/75 mmHg</li>
+                        <li><strong>Emergency Contact:</strong> Harshini, +91-9637738793</li>
+                        <li><strong>Notes:</strong> Prescribed inhaler for daily use.</li>
+                    </ul>
+                </li>
+                <li data-patient-number="8">
+                    <div class="patient-header">
+                        <strong>Patient 8:</strong> Suresh
+                        <button class="toggle-details-btn" onclick="toggleDetails(this)">Show Details</button>
+                    </div>
+                    <ul class="patient-details" style="display: none;">
+                        <li><strong>Age:</strong> 45</li>
+                        <li><strong>Gender:</strong> Male</li>
+                        <li><strong>E-mail:</strong> suresh8@gmail.com</li>
+                        <li><strong>Medical History:</strong> Blood presure</li>
+                        <li><strong>Current Health Status:</strong> Stable</li>
+                        <li><strong>Recent Visits:</strong> Last visit on 1/1/2024</li>
+                        <li><strong>Health Metrics:</strong> Heart Rate: 75 bpm, BP: 118/75 mmHg</li>
+                        <li><strong>Emergency Contact:</strong> Suresh, +91-7838728332</li>
+                        <li><strong>Notes:</strong> Prescribed inhaler for daily use.</li>
+                    </ul>
+                </li>
+        </div>
+    </div>
+
+    <script>
+        function searchPatient() {
+            const input = document.getElementById('searchInput').value.toLowerCase().trim();  
+            const patientList = document.getElementById('patientList');
+            const patients = patientList.getElementsByTagName('li');
+
+            for (let i = 0; i < patients.length; i++) {
+                const patientNumber = patients[i].getAttribute('data-patient-number').toLowerCase(); 
+                const patientName = patients[i].getElementsByTagName('strong')[0].innerText.toLowerCase(); 
+                const details = patients[i].getElementsByClassName('patient-details')[0];
+                const toggleButton = patients[i].getElementsByClassName('toggle-details-btn')[0];
+
+                if (patientNumber.includes(input) || patientName.split(': ')[1].includes(input)) {
+                    patients[i].style.display = '';  
+                    details.style.display = 'block'; 
+                    toggleButton.innerText = 'Hide Details'; 
+                } else {
+                    patients[i].style.display = 'none';  
+                    details.style.display = 'none'; 
+                    toggleButton.innerText = 'Show Details'; 
+                }
+            }
+        }
+
+        function toggleDetails(button) {
+            const details = button.parentElement.nextElementSibling;
+            if (details.style.display === 'none' || details.style.display === '') {
+                details.style.display = 'block';
+                button.innerText = 'Hide Details';
+            } else {
+                details.style.display = 'none';
+                button.innerText = 'Show Details';
+            }
+        }
+    </script>
+</body>
+</html>

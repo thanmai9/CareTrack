@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Health Monitoring System</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+    </div>
+
+    <header>
+        <div class="navbar">
+            <button id="sidebarToggle">☰</button> <!-- Toggle button for sidebar -->
+            <div class="logo">
+                <a href="#"><h1>CareTrack</h1></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="usr_login.html">Login</a></li>
+                    <li><a href="location.html">Location</a></li>
+                    <li><a href="doctor-login.html">Doctor's Login</a></li>
+                    <li><a href="about.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="background-image">
+            <div class="center-text">
+                <h1>Your health, your home <br>connected care anytime</h1>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+            
+            const mainContent = document.querySelector('main');
+            if (sidebar.classList.contains('open')) {
+                mainContent.style.marginLeft = '400px';
+            } else {
+                mainContent.style.marginLeft = '0';
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            if (!sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        const sidebar = document.getElementById('sidebar');
+        sidebar.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        sidebarToggle.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+
+    </script>  
+</body>
+</html>

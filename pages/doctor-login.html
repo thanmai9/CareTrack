@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor's Login</title>
+    <link rel="stylesheet" href="../css/doc-login.css">
+</head>
+<body style="background-color: lightblue; background-image: url('../img/doctorbg.jpg'); background-size: cover; background-position: center; background-attachment: fixed; height: 100vh; margin: 0;">
+
+    <header>
+        <div class="sidebar" id="sidebar">
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="help.html">Help</a></li>
+            </ul>
+        </div>
+    
+        <header>
+            <div class="navbar">
+                <button id="sidebarToggle">☰</button> <!-- Toggle button for sidebar -->
+                <div class="logo">
+                    <a href="#"><h1>CareTrack</h1></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="usr_login.html">Login</a></li>
+                        <li><a href="location.html">Location</a></li>
+                        <li><a href="doctor-login.html">Doctor's Login</a></li>
+                        <li><a href="about.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+    </header>
+    <main>
+        <section class="login-container doctor-login">
+            <h1>Doctor's Login</h1>
+            <form action="doctor-login.php" method="post">
+                <label for="doctorID">Doctor ID:</label>
+                <input type="text" id="doctorID" name="doctorID" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+            <p>Forgot your password? <a href="reset-password.html">Reset it here</a></p>
+            <p>SIGN UP? <a href="doc_signup.html">SIGN UP</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CareTrack. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        });
+
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            if (!sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        const sidebar = document.getElementById('sidebar');
+        sidebar.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        sidebarToggle.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    </script>  
+</body>
+</html>

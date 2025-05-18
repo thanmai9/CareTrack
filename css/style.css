@@ -1,0 +1,278 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    background-image: url('../img/index_img.jpg');
+    background-size: cover;
+    overflow-y: hidden;
+}
+.sidebar {
+    height: 100vh; /* Full viewport height */
+    width: 250px; /* Adjust width as needed */
+    position: fixed;
+    left: -250px; /* Initially hidden off-screen */
+    top: 0;
+    background-color: #333;
+    padding-top: 20px;
+    padding-left: 20px;
+    overflow-y: auto;
+    z-index: 1000; /* Ensure sidebar is above other content */
+    transition: left 0.3s ease; /* Smooth transition */
+}
+
+.sidebar.open {
+    left: 0; /* Move into view */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 20px;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 15px 30px;
+    position: fixed;
+    width: 100%; /* Full width */
+    top: 0;
+    z-index: 500; /* Ensure navbar is below the sidebar */
+}
+
+/* Logo Styles */
+.logo {
+    margin-left: 35px;
+}
+.logo a {
+    color: lightblue;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+/* Navbar Search Bar Styles */
+.navbar .search-bar {
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 30px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Search Bar Styles */
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input[type="text"] {
+    padding: 5px;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+}
+
+.search-bar button {
+    padding: 6px 12px;
+    font-size: 14px;
+    border: none;
+    background-color: #ddd;
+    color: #333;
+    border-radius: 3px;
+    margin-left: 4px;
+    cursor: pointer;
+}
+
+/* Main Content Styles */
+main {
+    padding-top: 60px; /* Adjust if needed */
+}
+
+/* Background Image Styles */
+.background-image {
+    background-image: url('banner1.jpg'); 
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    position: fixed; /* Keep background image fixed */
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensure it stays behind other elements */
+}
+
+/* Center Text Styles */
+.center-text {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    top: 50%; /* Center vertically */
+}
+
+.center-text h1 {
+    color: black;
+    font-size: 50px;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+}
+
+/* Sidebar Toggle Button Styles */
+#sidebarToggle {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    position: absolute;
+    left: 10px; /* Position inside navbar */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Center vertically */
+    z-index: 1500; /* Ensure button is above other content */
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+    /* Add responsive styles here if needed */
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    /* Add responsive styles here if needed */
+}
+
+.about-container {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;  /* Allow items to wrap to next row */
+    gap: 20px;
+    padding: 20px;
+    line-height: 1.5;
+    justify-content: space-between; /* Ensure equal spacing between items */
+}
+
+.about-box {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 300px;
+    min-height: 275px; /* Increase the height of the box */
+}
+.about-box a{
+    text-decoration: none;
+    color: black;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .search-bar {
+        flex-direction: column;
+    }
+}
+.login-container.doctor-login {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+    margin-top: 100px;
+    margin-left: 400px;
+}
+
+.login-container.doctor-login h1 {
+    color: darkblue; /* Matching color for headers */
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-container.doctor-login form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container.doctor-login label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.login-container.doctor-login input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid darkblue;
+    border-radius: 5px;
+}
+
+.login-container.doctor-login button {
+    padding: 10px;
+    background-color:rgba(0, 0, 0, 0.547); /* Darker cyan for the button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.login-container.doctor-login p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.login-container.doctor-login a {
+    color: #00796b;
+    text-decoration: none;
+}
+
+.login-container.doctor-login a:hover {
+    text-decoration: underline;
+}
+footer {
+    background-color: rgba(0, 0, 0, 0.547);
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}

@@ -1,0 +1,206 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Find Hospital Location</title>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                }
+                .navbar {
+                    background-color: #333;
+                    padding: 10px;
+                    color: white;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                .navbar h1 {
+                    margin: 0;
+                    font-size: 3rem;
+                    color:lightblue;
+                }
+                .navbar ul {
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    gap: 20px;
+                }
+                .navbar ul li {
+                    display: inline;
+                }
+                .navbar ul li a {
+                    color: white;
+                    text-decoration: none;
+                    font-size: 16px;
+                    margin-right: 100px;
+                }
+                main {
+                    padding: 20px;
+                }
+                input[type="text"] {
+                    padding: 10px;
+                    width: 100%;
+                    max-width: 300px;
+                    margin-right: 10px;
+                    border: 2px solid #333;
+                    border-radius: 5px;
+                    margin-bottom: 10px;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                }
+                button {
+                    padding: 10px 20px;
+                    border: none;
+                    background-color: #333;
+                    color: white;
+                    max-width: 300px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+                button:hover {
+                    background-color: #555;
+                }
+                #map {
+                    margin-top: 20px;
+                    width: 100%;
+                    height: 450px;
+                }
+                #address {
+                    margin-top: 20px;
+                    padding: 15px;
+                    border: 2px solid #333;
+                    border-radius: 5px;
+                    background-color: #f9f9f9;
+                    font-size: 18px;
+                    font-weight: bold;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                }
+                   /* Responsive styles */
+        @media (max-width: 768px) {
+
+            .navbar h1 {
+                font-size: 1.5rem;
+            }
+            .navbar ul {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .navbar ul li a {
+                font-size: 14px;
+            }
+            input[type="text"], button {
+                width: 100%;
+                max-width: none;
+                margin-right: 0;
+                box-sizing: border-box;
+            }
+            button {
+                    padding: 10px 20px;
+                    border: none;
+                    background-color: #333;
+                    color: white;
+                    width: 100%;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+        }
+
+        @media (max-width: 480px) {
+            .navbar h1 {
+                font-size: 1.2rem;
+            }
+            .navbar ul li a {
+                font-size: 12px;
+            }
+            #address {
+                font-size: 14px;
+            }
+        }
+            </style>
+        </head>
+        <body>
+        <header>
+            <div class="navbar">
+                <h1>CareTrack</h1>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="usr_login.html">Login</a></li>
+                        <li><a href="doctor-login.html">Doctor's Login</a></li>
+                        <li><a href="about.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section id="location">
+                <h2>Search for a Hospital</h2>
+                <input type="text" id="hospital-name" placeholder="Enter hospital name, state, district, and town">
+                <button type="button" onclick="searchHospital()">Search</button>
+                <div id="map"></div>
+                <div id="address"></div>
+            </section>
+        </main>
+
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script>
+            // Initialize the map with a default view of India
+            const map = L.map('map').setView([20.5937, 78.9629], 5);  // Centered on India
+
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Function to search for a hospital
+            function searchHospital() {
+                const hospitalName = document.getElementById('hospital-name').value;
+                if (!hospitalName) {
+                    alert("Please enter a hospital name and location details.");
+                    return;
+                }
+
+                // Use a geocoding service that doesn't require an API key, like Nominatim
+                fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(hospitalName)}&format=json&addressdetails=1`, {
+                    headers: {
+                        'Accept-Language': 'en'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.length > 0) {
+                        const lat = data[0].lat;
+                        const lon = data[0].lon;
+                        const displayName = data[0].display_name;  // Get the address
+
+                        map.setView([lat, lon], 15);
+
+                        // Add a marker at the hospital location
+                        L.marker([lat, lon]).addTo(map)
+                            .bindPopup(hospitalName)
+                            .openPopup();
+
+                        // Display the address
+                        document.getElementById('address').innerText = `Address: ${displayName}`;
+                    } else {
+                        alert("Location not found. Please try a different query.");
+                        document.getElementById('address').innerText = '';
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("An error occurred while searching for the hospital.");
+                    document.getElementById('address').innerText = '';
+                });
+            }
+        </script>
+
+        </body>
+        </html>
